@@ -1,0 +1,11 @@
+<div>
+    <h1>jhvjhvb</h1>
+    <pre *ngIf="values" >
+        <table border="1">
+            <tr  *ngFor='let in of counter(values.size)let i = index'>
+                <td  *ngFor='let in of counter(values.size);let i = index'>
+                   {{i}}
+            </tr>
+        </table>
+    </pre>
+</div>

@@ -1,0 +1,60 @@
+
+
+
+<form (ngSubmit)="sendValues()"  >
+  
+  
+  <mat-form-field appearance="fill">
+    <mat-label >shape:</mat-label>
+    <mat-select [(value)]="selectedShape"  >
+        <mat-option *ngFor="let item of shape | keyvalue" [value]="item.key">{{ item.value }}</mat-option>
+      </mat-select>
+  </mat-form-field>
+  
+  <mat-form-field  appearance="fill">
+    <mat-label >Policy:</mat-label>
+    <mat-select   [(value)]="selectedPolicy"> 
+        <mat-option *ngFor="let item of policy| keyvalue " [value]="item.key">{{item.value}}</mat-option>
+      </mat-select>
+       
+  </mat-form-field>
+
+    
+  <mat-form-field appearance="fill">
+    <mat-label >Size:</mat-label>
+    <mat-select [(value)]="selectedSize">
+        <mat-option *ngFor="let item of size | keyvalue" [value]="item.key">{{item.value}}</mat-option>
+      </mat-select>
+       
+  </mat-form-field>
+  
+  <mat-form-field appearance="fill">
+    <mat-label >Speed:</mat-label>
+    <mat-select [(value)]="selectedSpeed">
+        <mat-option *ngFor="let item of speed | keyvalue" [value]="item.key">{{item.value}}</mat-option>
+      </mat-select>
+       
+  </mat-form-field>
+
+      <mat-form-field appearance="fill">
+      <mat-label >Seed:</mat-label>
+      <mat-select [(value)]="selectedSeed">
+          <mat-option *ngFor="let item of seed | keyvalue" [value]="item.key">{{item.value}}</mat-option>
+        </mat-select>
+         
+    </mat-form-field>
+  
+    <mat-form-field appearance="fill">
+      <mat-label >Walls:</mat-label>
+      <mat-select [(value)]="selectedWalls">
+          <mat-option *ngFor="let item of walls | keyvalue" [value]="item.key">{{item.value}}</mat-option>
+        </mat-select>
+         
+    </mat-form-field>
+    <button mat-raised-button type="submit">Start</button>
+</form>
+
+  
+  
+  
+  
