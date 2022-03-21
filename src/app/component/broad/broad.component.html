@@ -1,11 +1,11 @@
-<div>
-    <h1>jhvjhvb</h1>
-    <pre *ngIf="values" >
-        <table border="1">
-            <tr  *ngFor='let in of counter(values.size)let i = index'>
-                <td  *ngFor='let in of counter(values.size);let i = index'>
-                   {{i}}
-            </tr>
-        </table>
-    </pre>
-</div>
+<!-- <div class="container" *ngFor="let v of values.size let b='index'" 
+     [ngStyle]="{ 'grid-template-columna':'repeat(values.size)'  }">
+    <div class="child" *ngFor="let i of v let a='index'">
+       {{b}} {{a}}
+    </div>
+    </div>     -->
+        <div  *ngFor="let i of values| keyvalue">
+       k {{i.key}}
+      v {{i.value}}
+      </div>
+    

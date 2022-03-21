@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {FormControl,Form} from '@angular/forms';
 import { IValues } from '../../models/values.interface';
-import { ShapeType,PolicyType,SizeType,SeedType,SpeedType,WallsType } from '../../models/values-type.enum';
+import { ICell } from '../../models/cells.interface'
+import { ShapeType,PolicyType,SizeType,SeedType,SpeedType,WallsType  } from '../../models/values-type.enum';
 import { BroadService } from 'src/app/service/broad.service';
 
 
@@ -18,17 +19,22 @@ export class ValuesComponent implements OnInit {
   }
   
 public sendValues():void{
+  let n =Number(this.selectedSize.slice(0,this.selectedSize.length/2));
+  const Cell : Boolean[][] = new Array(n).fill(false).map(()=> new Array(n).fill(false))
   const values: IValues ={
   
     shape : this.selectedShape,
     policy : this.selectedPolicy,
-    size : Number(this.selectedSize.slice(0,this.selectedSize.length/2)),
+    size : Cell,
     speed : this.selectedSpeed,
     seed : this.selectedSeed,
     walls : this.selectedWalls
-    }  
+    }      
+    console.log(values.size.length)
+
     this.broadService.setValues(values);
 }
+
 public shape = ShapeType;
 public policy = PolicyType;
 public size = SizeType;
@@ -43,6 +49,7 @@ public selectedSize = SizeType['10 x 10'];
 public selectedSpeed = SpeedType.Normal;
 public selectedSeed = SeedType.Large;
 public selectedWalls = WallsType.Alive;
+
 
 
 // selectShape(event: Event) {
