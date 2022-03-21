@@ -4,7 +4,7 @@ import { ICell} from "./cells.interface"
 export interface IValues {
     shape:ShapeType,
     policy:PolicyType,
-    size:Boolean[][],
+    size:ICell[][],
     speed:SpeedType,
     seed:SeedType,
     walls:WallsType

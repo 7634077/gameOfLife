@@ -39,3 +39,8 @@ export enum WallsType{
     NotActive = 'Not Active',
     Alive = 'Alive'
 }
+export enum CellType{
+    live ="live" ,
+    dead ="dead",
+    wall ="wall"
+}

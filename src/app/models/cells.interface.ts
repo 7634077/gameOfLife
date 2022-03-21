@@ -1,4 +1,5 @@
-
+import { CellType } from "./values-type.enum";
 export interface ICell {
-    live:boolean,
+    live:CellType,
+    neibord:number
 }

@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { IValues } from '../models/values.interface';
-import { SeedType } from '../models/values-type.enum';
+import { SeedType, CellType } from '../models/values-type.enum';
+import { ICell } from '../models/cells.interface';
+import { TemplatePortalDirective } from '@angular/cdk/portal';
 @Injectable({
   providedIn: 'root'
 })
@@ -25,7 +27,9 @@ export class BroadService {
   }
   public setCells():void{
     this.seed();
-    this.shape();
+    console.log("1",this.broadSubject.value.size)
+
+    //this.shape();
   }
   public seed (): void{
 
@@ -43,18 +47,50 @@ export class BroadService {
     }
 
     let arrLen = this.broadSubject.value.size.length;
-    let noc = n*(arrLen*arrLen)/100;//random of number of cells with live status.
+    //let noc = n*(arrLen*arrLen)/100;//random of number of cells with live status.
+    let noc=1
     while(noc--){
       let rc = this.random(arrLen*arrLen)//random cell set to live status
-      this.broadSubject.value.size[Math.floor(rc/arrLen)][rc%arrLen]=true;
+      //this.toLive(Math.floor(rc/arrLen),rc%arrLen);
+            this.toLive(Math.floor(rc/arrLen),rc%arrLen);
+
     }
 
   }
   public random(n:number):number{
    return Math.floor( Math.random()*(n));
   }
+  public toLive(rn:number,cn:number):void{
+    console.log("cell:",this.broadSubject.value.size[rn][cn],"rn:",rn,"cn",cn)
 
-  public shape():void{
-    
+    this.broadSubject.value.size[rn][cn].live=CellType.live;
+    console.log("cell:",this.broadSubject.value.size[rn][cn],"rn:",rn,"cn",cn)
+    // for (let r of [rn-1,rn,rn+1]){
+    //   for (let c of [cn-1,cn,cn+1]){
+    //     console.log("r:",r,"c:",c)
+
+    //     if (!(r<0)&&!(c<0)){
+    //           console.log("cell:",this.broadSubject.value.size[r][c],"rn:",rn,"cn",cn)
+     
+    //       this.broadSubject.value.size[r][c].neibord++;
+    //     }
+    // }
   }
+  // public shape():void{
+  //   switch(this.broadSubject.value.shape){
+  //     case "Rectengular":
+  //       let i = Math.floor((this.broadSubject.value.size.length-1)/2);
+  //       let j=i;
+  //       while(i--){
+  //         console.log("i",i,"j",j)
+
+  //         //this.broadSubject.value.size[j-i][i]={live:CellType.wall}
+  //       }
+  //       break;
+  //     case "Diamond" : 
+  //     case "Cross":
+  //     case "Circular" :
+  //     case "Ring" :
+  //   }
+  // }
 }

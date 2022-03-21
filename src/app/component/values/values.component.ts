@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import {FormControl,Form} from '@angular/forms';
 import { IValues } from '../../models/values.interface';
 import { ICell } from '../../models/cells.interface'
-import { ShapeType,PolicyType,SizeType,SeedType,SpeedType,WallsType  } from '../../models/values-type.enum';
+import { ShapeType,PolicyType,SizeType,SeedType,SpeedType, WallsType ,CellType  } from '../../models/values-type.enum';
 import { BroadService } from 'src/app/service/broad.service';
 
 
@@ -20,17 +20,22 @@ export class ValuesComponent implements OnInit {
   
 public sendValues():void{
   let n =Number(this.selectedSize.slice(0,this.selectedSize.length/2));
-  const Cell : Boolean[][] = new Array(n).fill(false).map(()=> new Array(n).fill(false))
-  const values: IValues ={
-  
+  let  selectedCell = CellType.dead
+  const cell :ICell ={
+    live : selectedCell,
+    neibord :0
+  }
+  const Cells : ICell[][] = new Array(n).fill(cell).map(()=> new Array(n).fill(cell))
+  console.log("Cells",Cells)
+  const values: IValues = {
     shape : this.selectedShape,
     policy : this.selectedPolicy,
-    size : Cell,
+    size : Cells,
     speed : this.selectedSpeed,
     seed : this.selectedSeed,
     walls : this.selectedWalls
     }      
-    console.log(values.size.length)
+    console.log("values",values)
 
     this.broadService.setValues(values);
 }
