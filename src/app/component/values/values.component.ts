@@ -20,14 +20,11 @@ export class ValuesComponent implements OnInit {
   
 public sendValues():void{
   let n =Number(this.selectedSize.slice(0,this.selectedSize.length/2));
-  let  selectedCell = CellType.dead
-  const cell :ICell ={
-    live : selectedCell,
+  let Cells : Array<Array<ICell>> = new Array(n).fill(null).map(()=>new Array(n).fill(null).map(()=>({
+    live : CellType.dead,
     neibord :0
-  }
-  const Cells : ICell[][] = new Array(n).fill(cell).map(()=> new Array(n).fill(cell))
-  console.log("Cells",Cells)
-  const values: IValues = {
+  })));
+  var values: IValues = {
     shape : this.selectedShape,
     policy : this.selectedPolicy,
     size : Cells,
@@ -35,7 +32,6 @@ public sendValues():void{
     seed : this.selectedSeed,
     walls : this.selectedWalls
     }      
-    console.log("values",values)
 
     this.broadService.setValues(values);
 }
@@ -52,7 +48,7 @@ public selectedShape = ShapeType.Rectengular;
 public selectedPolicy = PolicyType.Conway;
 public selectedSize = SizeType['10 x 10'];
 public selectedSpeed = SpeedType.Normal;
-public selectedSeed = SeedType.Large;
+public selectedSeed = SeedType.Low;
 public selectedWalls = WallsType.Alive;
 
 

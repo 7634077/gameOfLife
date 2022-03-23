@@ -4,8 +4,11 @@
        {{b}} {{a}}
     </div>
     </div>     -->
-        <div  *ngFor="let i of values| keyvalue">
-       k {{i.key}}
-      v {{i.value}}
-      </div>
+    <div *ngIf=!!values>
+      <div  *ngFor="let i of broad()| keyvalue">
+         {{i.value}}
+    </div>
+    </div>
+       
+      
     
