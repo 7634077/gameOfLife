@@ -13,31 +13,40 @@ import { ICell } from 'src/app/models/cells.interface';
 export class BroadComponent implements OnInit,OnDestroy {
 
   public values:IValues ;
+ // public broad:ICell[][] ;
+
   private subscription: Subscription = new Subscription();
 
   constructor( private broadService : BroadService, private api: ApiService) { }
   
   ngOnInit(): void {
-    this.api.getBroad().subscribe((data)=>{
-      console.log("data,",data);
-    })
+    // this.api.getBroad().subscribe((data)=>{
+    //   console.log("data,",data);
+    // })
     this.subscription.add(
       this.broadService.getValues().subscribe(data => {
+        console.log("data,",data);
+
         this.values = data;
+        //this.broad = data.size;
       })  
     )
     
   }
+  // ngAfterViewInit():void {
+  //   setTimeout(()=>{console.log("working...")},(500))
+  //   console.log("generate,");
+
+  //     this.broadService.generate();
+  // }
     
   ngOnDestroy(){
     this.subscription.unsubscribe();
   }
-  public broad ():Array<Array<CellType>>{
-    console.log("1",this.values)
+  public broad():Array<Array<CellType>>{
+  //  console.log("1",this.values)
     
-      let copy =this.values.size.map((o)=>o.map((item)=>item.live));
-      console.log("copy",copy)
-     return copy;
+    return this.values.size.map((o)=>o.map((item)=>item.live));
   }
   counter(i: number) {
     

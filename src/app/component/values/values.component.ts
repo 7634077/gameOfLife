@@ -34,6 +34,10 @@ public sendValues():void{
     }      
 
     this.broadService.setValues(values);
+    setTimeout(()=>{  console.log("generate,");
+                      this.broadService.generate()},(5000))
+  
+        
 }
 
 public shape = ShapeType;

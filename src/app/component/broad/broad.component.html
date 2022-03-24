@@ -5,9 +5,12 @@
     </div>
     </div>     -->
     <div *ngIf=!!values>
-      <div  *ngFor="let i of broad()| keyvalue">
+      <!-- <div  *ngFor="let i of broad()| keyvalue">
          {{i.value}}
-    </div>
+        
+
+    </div> -->
+    {{values.size|json}}
     </div>
        
       

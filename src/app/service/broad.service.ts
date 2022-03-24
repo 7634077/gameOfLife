@@ -29,10 +29,9 @@ export class BroadService {
   public setCells():void{
     this.seed();
     let times=10;
-    while(times--){
-      setTimeout(()=>{console.log("working...")},(500))
-      this.generate();
-    }
+    //while(times--){
+      
+    //}
     
 
     //this.shape();
@@ -72,7 +71,7 @@ export class BroadService {
       if (column<0){
         column=arrLen-1
       }
-      console.log("rc",rc,"r",row,"c",column)
+     // console.log("rc",rc,"r",row,"c",column)
             this.toLive(row,column);
 
     }
@@ -90,7 +89,7 @@ export class BroadService {
     for (let r of [rn-1,rn,rn+1]){
       for (let c of [cn-1,cn,cn+1]){
         if ((!((r<0)||(r>this._broad.length-1))&&!((c<0)||(c>this._broad.length-1)))&&(r!=rn||c!=cn)){
-          console.log("r",r,"c",c,this._broad)
+        //  console.log("r",r,"c",c,this._broad)
 
           let neibord=this._broad[r][c].neibord;
 
@@ -99,7 +98,7 @@ export class BroadService {
       }
     }
   //this._broad[rn][cn].neibord=thisNeibord;
-  console.log(this._broad)
+  //console.log(this._broad)
 
   }
   // public shape():void{
